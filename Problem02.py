@@ -4,31 +4,23 @@ Created on Fri Sep  8 13:15:56 2017
 
 @author: Nilton Junior
 """
+import time
 
-limit = 4000000 # Limite da contagem
+def fib(n):
+    return fib(n - 1) + fib(n - 2) if n > 2 else 1
 
-f_old = 1 # 1o termo da sequência de Fibonacci
+def cached_exec(n, cache = {}):
+    if n not in cache:
+        cache[n] =  fib(n)
+    return cache[n], cache
 
-f_older = 1 # 2o termo da sequência de Fibonacci
-
-f_new = f_old + f_older # 3o termo da sequência de Fibonacci
-
-s = 2 # Soma dos elementos da sequência de Fibonacci pares menores do que o limite
-
-while f_new < limit:
-    
-    temp = f_old  # Variável temporária
-    
-    f_old = f_new
-    
-    f_older = temp
-    
-    f_new = f_old + temp
-    
-    if f_new % 2 == 0:
-        
-        s = s + f_new
-        
-print(s)
-    
-    
+if __name__ == "__main__":
+    cache = {}
+    n = 1
+    while True:
+        start_time = time.time()
+        fibo, cache = cached_exec(n)
+        print('Fib({}) = {}. Time = {}'.format(n, fibo, float(time.time()-start_time)))
+        n += 1
+        if n == 100:
+            break

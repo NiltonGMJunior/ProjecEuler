@@ -7,18 +7,11 @@ Created on Fri Sep  8 13:15:56 2017
 
 n = 1000 # Limite da sequência
 
-s = 0 # Armazena o resultado da soma
+def sum_k(n, k):
+    return k*(n//k)*(n//k + 1)//2
 
-for i in range(0,n - 1):
-    
-    if  (       (i + 1) % 3 == 0
-         or     (i + 1) % 5 == 0
-        ):
-            
-        
-#            print (i + 1)
-            
-            s = s + i + 1
+def euler(n):
+    return sum_k(n - 1, 3) + sum_k(n - 1, 5) - sum_k(n - 1, 15)
 
-print(s)
-
+if __name__ == "__main__":
+    print(euler(n - 1))
