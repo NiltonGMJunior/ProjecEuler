@@ -17,10 +17,11 @@ def cached_exec(n, cache = {}):
 if __name__ == "__main__":
     cache = {}
     n = 1
+    limit = 100
     while True:
         start_time = time.time()
         fibo, cache = cached_exec(n)
-        print('Fib({}) = {}. Time = {}'.format(n, fibo, float(time.time()-start_time)))
+        print('[CACHED] Fib({}) = {}. Time = {}'.format(n, fibo, float(time.time()-start_time)))
         n += 1
-        if n == 100:
+        if n > limit:
             break
